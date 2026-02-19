@@ -1,0 +1,15 @@
+﻿
+	CREATE PROCEDURE EliminarRestaurante
+	 @Id AS UNIQUEIDENTIFIER
+	  AS
+	  BEGIN
+
+	SET NOCOUNT ON;
+	   BEGIN TRANSACTION
+	DELETE
+	FROM            Restaurantes
+	WHERE Restaurantes.Id = @Id 
+	SELECT @Id
+COMMIT TRANSACTION
+
+END

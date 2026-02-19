@@ -1,0 +1,15 @@
+﻿
+	CREATE PROCEDURE EliminarUsuario
+	 @Id AS UNIQUEIDENTIFIER
+	  AS
+	  BEGIN
+
+	SET NOCOUNT ON;
+	   BEGIN TRANSACTION
+	DELETE
+	FROM            Usuarios
+	WHERE Usuarios.Id = @Id 
+	SELECT @Id
+COMMIT TRANSACTION
+
+END
