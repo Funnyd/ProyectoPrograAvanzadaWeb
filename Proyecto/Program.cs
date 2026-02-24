@@ -20,6 +20,10 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IProductoFlujo, ProductoFlujo>();
 builder.Services.AddScoped<IProductoDA, ProductoDA>();
+builder.Services.AddScoped<IUsuarioFlujo, UsuarioFlujo>();
+builder.Services.AddScoped<IUsuarioDA, UsuarioDA>();
+builder.Services.AddScoped<IRolFlujo, RolFlujo>();
+builder.Services.AddScoped<IRolDA, RolDA>();
 builder.Services.AddScoped<IRepositorioDapper, RepositorioDapper>();
 builder.Services.AddScoped<IConfiguracion, Configuracion>();
 

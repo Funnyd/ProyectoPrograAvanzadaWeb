@@ -87,5 +87,6 @@
     <Build Include="dbo\Stored Procedures\CrearRestaurante.sql" />
     <Build Include="dbo\Stored Procedures\CrearProducto.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerUsuarioPorId.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerRoles.sql" />
   </ItemGroup>
 </Project>
