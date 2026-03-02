@@ -1,8 +1,4 @@
-﻿
-/* =========================================================
-   RESTAURANTES
-   ========================================================= */
-   CREATE PROCEDURE ObtenerRestaurantes
+﻿CREATE PROCEDURE ObtenerRestaurantes
 	AS
 	BEGIN
 

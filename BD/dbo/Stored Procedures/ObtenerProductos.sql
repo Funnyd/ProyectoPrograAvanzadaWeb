@@ -1,9 +1,4 @@
-﻿
-/* =========================================================
-   PRODUCTOS
-   ========================================================= */
-
-      CREATE PROCEDURE ObtenerProductos
+﻿CREATE PROCEDURE ObtenerProductos
 	AS
 	BEGIN
 

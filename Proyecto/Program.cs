@@ -24,6 +24,8 @@ builder.Services.AddScoped<IUsuarioFlujo, UsuarioFlujo>();
 builder.Services.AddScoped<IUsuarioDA, UsuarioDA>();
 builder.Services.AddScoped<IRolFlujo, RolFlujo>();
 builder.Services.AddScoped<IRolDA, RolDA>();
+builder.Services.AddScoped<IPromocionFlujo, PromocionFlujo>();
+builder.Services.AddScoped<IPromocionDA, PromocionDA>();
 builder.Services.AddScoped<IRepositorioDapper, RepositorioDapper>();
 builder.Services.AddScoped<IConfiguracion, Configuracion>();
 

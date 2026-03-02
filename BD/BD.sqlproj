@@ -88,5 +88,10 @@
     <Build Include="dbo\Stored Procedures\CrearProducto.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerUsuarioPorId.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerRoles.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerPromocionPorId.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerPromociones.sql" />
+    <Build Include="dbo\Stored Procedures\EliminarPromocion.sql" />
+    <Build Include="dbo\Stored Procedures\EditarPromocion.sql" />
+    <Build Include="dbo\Stored Procedures\CrearPromocion.sql" />
   </ItemGroup>
 </Project>
