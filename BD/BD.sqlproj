@@ -93,5 +93,15 @@
     <Build Include="dbo\Stored Procedures\EliminarPromocion.sql" />
     <Build Include="dbo\Stored Procedures\EditarPromocion.sql" />
     <Build Include="dbo\Stored Procedures\CrearPromocion.sql" />
+    <Build Include="dbo\Stored Procedures\CrearCliente.sql" />
+    <Build Include="dbo\Stored Procedures\EditarCliente.sql" />
+    <Build Include="dbo\Stored Procedures\EliminarCliente.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerClientes.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerClientePorId.sql" />
+    <Build Include="dbo\Stored Procedures\CrearEmpleado.sql" />
+    <Build Include="dbo\Stored Procedures\EditarEmpleado.sql" />
+    <Build Include="dbo\Stored Procedures\EliminarEmpleado.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerEmpleados.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerEmpleadoPorId.sql" />
   </ItemGroup>
 </Project>

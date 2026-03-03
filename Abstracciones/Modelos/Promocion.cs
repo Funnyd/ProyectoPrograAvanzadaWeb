@@ -9,8 +9,7 @@ namespace Abstracciones.Modelos
 {
     public class Promocion
     {
-        [Required]
-        public Guid idProducto { get; set; }
+        
 
         [Required]
         public decimal PorcentajeDescuento { get; set; }
@@ -24,11 +23,12 @@ namespace Abstracciones.Modelos
 
     public class PromocionRequest : Promocion
     {
-
+        public Guid idProducto { get; set; }
     }
 
     public class PromocionResponse : Promocion
     {
         public Guid Id { get; set; }
+        public string Producto { get; set; }
     }
 }

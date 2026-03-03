@@ -38,7 +38,7 @@ GO
 CREATE TABLE Promociones (
     Id UNIQUEIDENTIFIER PRIMARY KEY,
     idProducto UNIQUEIDENTIFIER NOT NULL,
-	PorcentajeDescuento DECIMAL(5,2) NOT NULL,
+	PorcentajeDescuento UNIQUEIDENTIFIER NOT NULL,
 	FechaVencimiento DATE NOT NULL,
 	PromocionValida BIT,
 	CONSTRAINT FK_Promociones_Productos
@@ -388,90 +388,5 @@ GO
 	SELECT @Id
 COMMIT TRANSACTION
 
-END
-GO
-/* =========================================================
-   PROMOCIONES
-   ========================================================= */
-CREATE PROCEDURE ObtenerPromociones
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    SELECT
-        Id,
-        idProducto,
-        PorcentajeDescuento,
-        FechaVencimiento,
-        PromocionValida
-    FROM Promociones;
-END
-GO
-
-CREATE PROCEDURE ObtenerPromocionPorId
-    @Id UNIQUEIDENTIFIER
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    SELECT
-        Id,
-        idProducto,
-        PorcentajeDescuento,
-        FechaVencimiento,
-        PromocionValida
-    FROM Promociones
-    WHERE Id = @Id;
-END
-GO
-
-CREATE PROCEDURE CrearPromocion
-    @Id UNIQUEIDENTIFIER,
-    @idProducto UNIQUEIDENTIFIER,
-    @PorcentajeDescuento DECIMAL(5,2),
-    @FechaVencimiento DATE,
-    @PromocionValida BIT
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    INSERT INTO Promociones (Id, idProducto, PorcentajeDescuento, FechaVencimiento, PromocionValida)
-    VALUES (@Id, @idProducto, @PorcentajeDescuento, @FechaVencimiento, @PromocionValida);
-
-    SELECT @Id;
-END
-GO
-
-CREATE PROCEDURE EditarPromocion
-    @Id UNIQUEIDENTIFIER,
-    @idProducto UNIQUEIDENTIFIER,
-    @PorcentajeDescuento DECIMAL(5,2),
-    @FechaVencimiento DATE,
-    @PromocionValida BIT
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    UPDATE Promociones
-    SET idProducto = @idProducto,
-        PorcentajeDescuento = @PorcentajeDescuento,
-        FechaVencimiento = @FechaVencimiento,
-        PromocionValida = @PromocionValida
-    WHERE Id = @Id;
-
-    SELECT @Id;
-END
-GO
-
-CREATE PROCEDURE EliminarPromocion
-    @Id UNIQUEIDENTIFIER
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    DELETE FROM Promociones
-    WHERE Id = @Id;
-
-    SELECT @Id;
 END
 GO

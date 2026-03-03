@@ -1,4 +1,5 @@
-﻿using Abstracciones.Interfaces.Flujo;
+﻿using Abstracciones.Interfaces.API;
+using Abstracciones.Interfaces.Flujo;
 using Abstracciones.Modelos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,7 +7,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PromocionController : Controller
+    public class PromocionController : Controller, IPromocionController
     {
         private IPromocionFlujo _promocionFlujo;
 

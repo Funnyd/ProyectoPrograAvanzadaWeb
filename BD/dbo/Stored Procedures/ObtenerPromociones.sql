@@ -4,10 +4,11 @@ BEGIN
     SET NOCOUNT ON;
 
     SELECT
-        Id,
-        idProducto,
-        PorcentajeDescuento,
-        FechaVencimiento,
-        PromocionValida
-    FROM Promociones;
+        Promociones.Id,
+        Productos.Nombre AS Producto,
+        Promociones.PorcentajeDescuento,
+        Promociones.FechaVencimiento,
+        Promociones.PromocionValida
+    FROM          Promociones INNER JOIN
+							  Productos ON Promociones.idProducto = Productos.Id
 END
