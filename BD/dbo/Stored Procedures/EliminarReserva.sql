@@ -1,0 +1,15 @@
+﻿
+	CREATE PROCEDURE EliminarReserva
+	 @Id AS UNIQUEIDENTIFIER
+	  AS
+	  BEGIN
+
+	SET NOCOUNT ON;
+	   BEGIN TRANSACTION
+	DELETE
+	FROM            Reservas
+	WHERE Reservas.Id = @Id 
+	SELECT @Id
+COMMIT TRANSACTION
+
+END

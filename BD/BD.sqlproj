@@ -103,5 +103,23 @@
     <Build Include="dbo\Stored Procedures\EliminarEmpleado.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerEmpleados.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerEmpleadoPorId.sql" />
+    <Build Include="dbo\Stored Procedures\CrearPedido.sql" />
+    <Build Include="dbo\Stored Procedures\CrearReserva.sql" />
+    <Build Include="dbo\Stored Procedures\EditarPedido.sql" />
+    <Build Include="dbo\Stored Procedures\EditarReserva.sql" />
+    <Build Include="dbo\Stored Procedures\EliminarPedido.sql" />
+    <Build Include="dbo\Stored Procedures\EliminarReserva.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerPedidos.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerReservas.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerReservaPorId.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerPedidoPorId.sql" />
+    <Build Include="dbo\Stored Procedures\CrearMenu.sql" />
+    <Build Include="dbo\Stored Procedures\EditarMenu.sql" />
+    <Build Include="dbo\Stored Procedures\EliminarMenu.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerMenus.sql" />
+    <Build Include="dbo\Stored Procedures\CrearDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\EditarDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\EliminarDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerDetalles.sql" />
   </ItemGroup>
 </Project>

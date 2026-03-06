@@ -23,6 +23,14 @@ builder.Services.AddScoped<IProductoFlujo, ProductoFlujo>();
 builder.Services.AddScoped<IProductoDA, ProductoDA>();
 builder.Services.AddScoped<IPromocionFlujo, PromocionFlujo>();
 builder.Services.AddScoped<IPromocionDA, PromocionDA>();
+builder.Services.AddScoped<IPedidoFlujo, PedidoFlujo>();
+builder.Services.AddScoped<IPedidoDA, PedidoDA>();
+builder.Services.AddScoped<IReservaFlujo, ReservaFlujo>();
+builder.Services.AddScoped<IReservaDA, ReservaDA>();
+builder.Services.AddScoped<IMenuFlujo, MenuFlujo>();
+builder.Services.AddScoped<IMenuDA, MenuDA>();
+builder.Services.AddScoped<IDetalleFlujo, DetalleFlujo>();
+builder.Services.AddScoped<IDetalleDA, DetalleDA>();
 
 builder.Services.AddScoped<IUsuarioFlujo, UsuarioFlujo>();
 builder.Services.AddScoped<IUsuarioDA, UsuarioDA>();
