@@ -10,10 +10,10 @@
 	SET NOCOUNT ON;
 	BEGIN TRANSACTION
     INSERT INTO [dbo].[Productos]
-               ([Id]
-               ,[Nombre],
-			    [Precio],
-				[Descripcion])
+               (Id
+               ,Nombre,
+			    Precio,
+				Descripcion)
          VALUES
                (@Id
                ,@Nombre,
