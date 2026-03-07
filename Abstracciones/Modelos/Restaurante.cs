@@ -9,20 +9,17 @@ namespace Abstracciones.Modelos
 {
     public class Restaurante
     {
+        [Required(ErrorMessage = "El campo ubicación es requerido")]
+        public string Ubicación { get; set; }
 
-        [Required(ErrorMessage = "El campo Ubicacion es requerido")]
-        public string Ubicacion { get; set; }
+        public class RestauranteRequest : Restaurante
+        {
+            public Guid id { get; set; }
+        }
 
-
-    }
-
-    public class RestauranteRequest : Restaurante
-    {
-
-    }
-
-    public class RestauranteResponse : Restaurante
-    {
-        public Guid Id { get; set; }
+        public class RestauranteResponse : Restaurante
+        {
+            public Guid Id { get; set; }
+        }
     }
 }
