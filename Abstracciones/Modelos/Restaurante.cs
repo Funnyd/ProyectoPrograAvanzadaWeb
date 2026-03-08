@@ -10,7 +10,7 @@ namespace Abstracciones.Modelos
     public class Restaurante
     {
         [Required(ErrorMessage = "El campo ubicación es requerido")]
-        public string Ubicación { get; set; }
+        public string Ubicacion { get; set; }
 
         public class RestauranteRequest : Restaurante
         {
