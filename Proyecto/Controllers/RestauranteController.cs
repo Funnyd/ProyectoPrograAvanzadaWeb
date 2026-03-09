@@ -1,41 +1,71 @@
 ﻿using Abstracciones.Interfaces.API;
+using Abstracciones.Interfaces.Flujo;
 using Abstracciones.Modelos;
+using DA;
+using Flujo;
 using Microsoft.AspNetCore.Mvc;
+using static Abstracciones.Modelos.Restaurante;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RestauranteController : ControllerBase, IUsuarioController
+    public class RestauranteController : ControllerBase, IRestauranteController
     {
-        public Task<IActionResult> Agregar(UsuarioRequest usuario)
+        private IRestauranteFlujo _restauranteFlujo;
+        private ILogger<RestauranteController> _logger;
+
+        public RestauranteController(IRestauranteFlujo restauranteFlujo, ILogger<RestauranteController> logger)
         {
-            throw new NotImplementedException();
+            _restauranteFlujo = restauranteFlujo;
+            _logger = logger;
         }
 
-        public Task<IActionResult> Editar(Guid Id, UsuarioRequest usuario)
+        public async Task<IActionResult> Agregar([FromBody] RestauranteRequest restaurante)
         {
-            throw new NotImplementedException();
+            var resultado = await _restauranteFlujo.Agregar(restaurante);
+            return CreatedAtAction(nameof(Obtener), new { Id = resultado }, null);
         }
 
-        public Task<IActionResult> Eliminar(Guid Id)
+        
+
+        public async Task<IActionResult> Editar([FromRoute] Guid Id, [FromBody] RestauranteRequest restaurante)
         {
-            throw new NotImplementedException();
+            if (!await VerificarExistencia(Id))
+                return NotFound("Restaurante no existe");
+            var resultado = await _restauranteFlujo.Editar(Id, restaurante);
+            return Ok(resultado);
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Eliminar([FromRoute] Guid Id)
         {
-            return View();
+            if (!await VerificarExistencia(Id))
+                return NotFound("Restaurante no existe");
+            var resultado = await _restauranteFlujo.Eliminar(Id);
+            return NoContent();
         }
 
-        public Task<IActionResult> Obtener()
+        public async Task<IActionResult> Obtener()
         {
-            throw new NotImplementedException();
+            var resultado = await _restauranteFlujo.Obtener();
+            if (!resultado.Any())
+                return NoContent();
+            return Ok(resultado);
         }
 
-        public Task<IActionResult> Obtener(Guid Id)
+        public async Task<IActionResult> Obtener([FromRoute] Guid Id)
         {
-            throw new NotImplementedException();
+            var resultado = await _restauranteFlujo.Obtener(Id);
+            return Ok(resultado);
+        }
+
+        private async Task<bool> VerificarExistencia(Guid Id)
+        {
+            var Validacion = false;
+            var Existe = await _restauranteFlujo.Obtener(Id);
+            if (Existe != null)
+                return Validacion = true;
+            return Validacion;
         }
     }
 }
