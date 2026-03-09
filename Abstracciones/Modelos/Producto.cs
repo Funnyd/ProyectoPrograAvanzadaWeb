@@ -23,8 +23,6 @@ namespace Abstracciones.Modelos
 
     public class ProductoRequest : Producto
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
 
     }
 

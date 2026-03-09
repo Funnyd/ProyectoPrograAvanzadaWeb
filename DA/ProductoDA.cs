@@ -38,7 +38,6 @@ namespace DA
             string query = @"EditarProducto";
             var resultado = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
-
                 Id = Id,
                 Nombre = producto.Nombre,
                 Precio = producto.Precio,

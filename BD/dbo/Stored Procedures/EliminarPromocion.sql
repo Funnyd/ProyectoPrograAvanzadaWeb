@@ -1,0 +1,11 @@
+﻿CREATE PROCEDURE EliminarPromocion
+    @Id UNIQUEIDENTIFIER
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM Promociones
+    WHERE Id = @Id;
+
+    SELECT @Id;
+END
