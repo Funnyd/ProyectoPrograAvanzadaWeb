@@ -4,7 +4,7 @@ using Abstracciones.Modelos;
 using DA;
 using Flujo;
 using Microsoft.AspNetCore.Mvc;
-using static Abstracciones.Modelos.Restaurante;
+
 
 namespace API.Controllers
 {
@@ -21,14 +21,15 @@ namespace API.Controllers
             _logger = logger;
         }
 
+        [HttpPost]
         public async Task<IActionResult> Agregar([FromBody] RestauranteRequest restaurante)
         {
             var resultado = await _restauranteFlujo.Agregar(restaurante);
             return CreatedAtAction(nameof(Obtener), new { Id = resultado }, null);
         }
 
-        
 
+        [HttpPut("{Id}")]
         public async Task<IActionResult> Editar([FromRoute] Guid Id, [FromBody] RestauranteRequest restaurante)
         {
             if (!await VerificarExistencia(Id))
@@ -37,6 +38,7 @@ namespace API.Controllers
             return Ok(resultado);
         }
 
+        [HttpDelete("{Id}")]
         public async Task<IActionResult> Eliminar([FromRoute] Guid Id)
         {
             if (!await VerificarExistencia(Id))
@@ -45,6 +47,7 @@ namespace API.Controllers
             return NoContent();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Obtener()
         {
             var resultado = await _restauranteFlujo.Obtener();
@@ -53,6 +56,7 @@ namespace API.Controllers
             return Ok(resultado);
         }
 
+        [HttpGet("{Id}")]
         public async Task<IActionResult> Obtener([FromRoute] Guid Id)
         {
             var resultado = await _restauranteFlujo.Obtener(Id);
