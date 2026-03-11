@@ -2,23 +2,10 @@
 using Abstracciones.Modelos;
 using Dapper;
 using Microsoft.Data.SqlClient;
-<<<<<<< HEAD
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Abstracciones.Modelos.Restaurante;
-
-namespace DA
-{
-    public class RestauranteDA
-=======
 
 namespace DA
 {
     public class RestauranteDA : IRestauranteDA
->>>>>>> f8cbbdbb13ff4a73c9634710d1ffcd5a1bf2fed5
     {
         private IRepositorioDapper _repositorioDapper;
         private SqlConnection _sqlConnection;
@@ -38,13 +25,8 @@ namespace DA
             var resultado = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
                 Id = Guid.NewGuid(),
-<<<<<<< HEAD
-                Nombre = restaurante.Ubicacion
-            });
-=======
                 Ubicacion = restaurante.Ubicacion
             }); 
->>>>>>> f8cbbdbb13ff4a73c9634710d1ffcd5a1bf2fed5
             return resultado;
         }
 
@@ -54,14 +36,9 @@ namespace DA
             string query = @"EditarRestaurante";
             var resultado = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
-<<<<<<< HEAD
 
                 Id = Id,
-                Nombre = restaurante.Ubicacion
-=======
-                Id = Id,
                 Ubicacion = restaurante.Ubicacion
->>>>>>> f8cbbdbb13ff4a73c9634710d1ffcd5a1bf2fed5
             });
             return resultado;
         }
@@ -105,9 +82,6 @@ namespace DA
 
         #endregion
 
-<<<<<<< HEAD
 
-=======
->>>>>>> f8cbbdbb13ff4a73c9634710d1ffcd5a1bf2fed5
     }
 }
