@@ -1,0 +1,43 @@
+﻿@page
+@model PollosHermanos.WEB.Pages.Empleado.AgregarEmpleadoModel
+
+<div class="container mt-4">
+    <div class="col-xl-6 col-lg-8 col-md-10 mx-auto">
+        <h1 class="mb-4">Nuevo Registro de Empleado</h1>
+
+        <form method="post">
+            <div class="form-group mb-3">
+                <label asp-for="usuario.Correo" class="form-label">Correo Electrónico</label>
+                <input asp-for="usuario.Correo" class="form-control" />
+                <span asp-validation-for="usuario.Correo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="usuario.Password" class="form-label">Contraseña</label>
+                <input type="password" asp-for="usuario.Password" class="form-control" />
+                <span asp-validation-for="usuario.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="empleado.Nombre" class="form-label">Nombre Completo</label>
+                <input asp-for="empleado.Nombre" class="form-control" />
+                <span asp-validation-for="empleado.Nombre" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="restaurantes" class="form-label">Restaurante</label>
+                <select asp-for="idRestaurante" class="form-select" asp-items="Model.restaurantes" id="restaurantes">
+                    <option value="">Seleccione el restaurante</option>
+                </select>
+                <span asp-validation-for="idRestaurante" class="text-danger"></span>
+            </div>
+
+            <div class="text-danger mb-3" asp-validation-summary="All"></div>
+
+            <div class="form-group d-flex gap-2">
+                <a class="btn btn-primary" asp-page="./Index">Regresar</a>
+                <button type="submit" class="btn btn-success">Agregar Empleado</button>
+            </div>
+        </form>
+    </div>
+</div>

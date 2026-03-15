@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE ObtenerRol
+	@Rol varchar(50)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT Id, Rol
+	FROM Roles
+	WHERE Rol = @Rol
+END
