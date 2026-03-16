@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reglas", "..\Reglas\Reglas.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Servicios", "..\Servicios\Servicios.csproj", "{6D79C81E-8546-4C33-93E3-D4244A5A2A7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware", "..\Middleware\Middleware.csproj", "{706CFD01-3C2E-4F22-AEDB-7DCC8C10C2EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware", "..\..\Middleware\Middleware.csproj", "{28D4F6E9-2ACE-B453-2A83-AA1DF35FE64C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +55,10 @@ Global
 		{6D79C81E-8546-4C33-93E3-D4244A5A2A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D79C81E-8546-4C33-93E3-D4244A5A2A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D79C81E-8546-4C33-93E3-D4244A5A2A7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{706CFD01-3C2E-4F22-AEDB-7DCC8C10C2EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{706CFD01-3C2E-4F22-AEDB-7DCC8C10C2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{706CFD01-3C2E-4F22-AEDB-7DCC8C10C2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{706CFD01-3C2E-4F22-AEDB-7DCC8C10C2EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D4F6E9-2ACE-B453-2A83-AA1DF35FE64C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D4F6E9-2ACE-B453-2A83-AA1DF35FE64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D4F6E9-2ACE-B453-2A83-AA1DF35FE64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D4F6E9-2ACE-B453-2A83-AA1DF35FE64C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

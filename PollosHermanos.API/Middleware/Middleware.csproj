@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Abstracciones\Abstracciones.csproj" />
-    <ProjectReference Include="..\PollosHermanos.API\Abstracciones\Abstracciones.csproj" />
   </ItemGroup>
 
 </Project>
