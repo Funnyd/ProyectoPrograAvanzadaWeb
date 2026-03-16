@@ -1,0 +1,58 @@
+﻿@page
+@model PollosHermanos.WEB.Pages.Empleado.EditarEmpleadoModel
+@{
+}
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3>Editar Empleado</h3>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <form method="post">
+                <!-- Inputs Necesarios -->
+                <input type="hidden" asp-for="usuario.Id">
+                <input type="hidden" asp-for="empleado.idUsuario">
+                <input type="hidden" asp-for="usuario.idRol">
+                <input type="hidden" asp-for="usuario.Rol">
+                <input type="hidden" asp-for="usuario.Password">
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" asp-for="empleado.Nombre">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" asp-for="usuario.Correo">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Restaurante</label>
+                            <select asp-for="idDelRestaurante"
+                                class="form-select"
+                                asp-items="Model.restaurantes">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-page="MenuEmpleado" class="btn btn-secondary">Regresar</a>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
