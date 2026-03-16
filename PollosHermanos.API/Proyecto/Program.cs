@@ -6,12 +6,20 @@ using Abstracciones.Modelos;
 using DA;
 using DA.Repositorio;
 using Flujo;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Reglas;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => {
+        options.LoginPath = "/cuenta/Login";
+        options.LogoutPath = "/cuenta/Logout";
+        options.AccessDeniedPath = "/cuenta/Accesodenegado";
+    });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -61,7 +69,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();
