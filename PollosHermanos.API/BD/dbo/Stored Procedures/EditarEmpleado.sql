@@ -10,7 +10,7 @@
 	   BEGIN TRANSACTION
        UPDATE [dbo].Empleados
           SET Nombre = @Nombre
-			 ,@idRestaurante = @idRestaurante
+			 ,idRestaurante = @idRestaurante
         WHERE idUsuario = @idUsuario
         SELECT @idUsuario
 	COMMIT TRANSACTION

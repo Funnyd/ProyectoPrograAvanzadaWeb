@@ -34,7 +34,6 @@ namespace DA
 
         public async Task<Guid> Editar(Guid Id, EmpleadoRequest empleado)
         {
-            await verificarEmpleado(Id);
             string query = @"EditarEmpleado";
             var resultado = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
@@ -53,7 +52,7 @@ namespace DA
             var resultado = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
 
-                Id = Id
+                idUsuario = Id
             });
             return resultado;
         }

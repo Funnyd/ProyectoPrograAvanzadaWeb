@@ -11,6 +11,7 @@ namespace Abstracciones.Modelos
     public class Empleado
     {
         [Required(ErrorMessage = "El campo Nombre es requerido")]
+        [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$", ErrorMessage = "Nombre solo puede tener letras y espacios ")]
         public string Nombre { get; set; }
 
     }

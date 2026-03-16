@@ -1,0 +1,89 @@
+﻿@page
+@model PollosHermanos.WEB.Pages.Empleado.MenuEmpleadoModel
+@{
+}
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <input type="text" class="form-control" id="buscar" placeholder="Buscar usuario...">
+        </div>
+        <div class="col-md-4">
+            <a asp-page="AgregarEmpleado" class="btn btn-primary w-100"> + Agregar Usuario</a>
+        </div>
+    </div>
+
+        <div class="row" id="listaUsuarios">
+            @foreach (var empleado in Model.Empleados)
+            {
+                <div class="col-md-6 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+
+                            <div>
+                                <h5 class="card-title mb-1">@Html.DisplayFor(modelo => empleado.Nombre)</h5>
+                                <p class="card-text mb-1 text-muted small">@Html.DisplayFor(modelo => empleado.Ubicacion)</p>
+                                <p class="card-text mb-0 small">@Html.DisplayFor(modelo => empleado.Correo)</p>
+                            </div>
+
+                            <div class="d-flex flex-column gap-1">
+                                <a asp-page="EditarEmpleado" asp-route-id="@empleado.idUsuario"
+                                   class="btn btn-warning border-0" title="Editar">
+                                    Editar
+                                </a>
+
+                                <button onclick="confirmarEliminar('@empleado.idUsuario', '@empleado.Nombre')"
+                                        class="btn btn-danger border-0" title="Eliminar">
+                                    Eliminar
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+</div>
+
+<script>
+    // Funcion para la busqueda de empleados
+    document.getElementById('buscar').addEventListener('keyup', function() {
+        let filtro = this.value.toLowerCase();
+        let usuarios = document.querySelectorAll('#listaUsuarios .col-md-6');
+        
+        usuarios.forEach(usuario => {
+            let nombre = usuario.querySelector('.card-title').textContent.toLowerCase();
+            if (nombre.includes(filtro)) {
+                usuario.style.display = 'block';
+            } else {
+                usuario.style.display = 'none';
+            }
+        });
+    });
+    // Funcion para confirmacion de eliminar
+    function confirmarEliminar(id, nombre) {
+        Swal.fire({
+            title: '<strong>Eliminar Empleado</strong>',
+            html: `Seguro desea eliminar al empleado ${nombre} ?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirigir a eliminarEmpleado
+                window.location.href = `/Empleado/EliminarEmpleado/${id}`;
+            }
+        });
+    }
+</script>
+
+</body>
+
