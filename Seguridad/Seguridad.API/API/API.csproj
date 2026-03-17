@@ -11,16 +11,15 @@
     <PackageReference Include="Autorizacion.DA.Proyecto" Version="1.0.1" />
     <PackageReference Include="Autorizacion.Flujo.Proyecto" Version="1.0.1" />
     <PackageReference Include="Autorizacion.Middleware.Proyecto" Version="1.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\Abstracciones\Abstracciones.csproj" />
-	<ProjectReference Include="..\Reglas\Reglas.csproj" />
-	  
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Seguridad\" />
+    <ProjectReference Include="..\Abstracciones\Abstracciones.csproj" />
+    <ProjectReference Include="..\Flujo\Flujo.csproj" />
+    <ProjectReference Include="..\DA\DA.csproj" />
+    <ProjectReference Include="..\Reglas\Reglas.csproj" />
   </ItemGroup>
 
 </Project>

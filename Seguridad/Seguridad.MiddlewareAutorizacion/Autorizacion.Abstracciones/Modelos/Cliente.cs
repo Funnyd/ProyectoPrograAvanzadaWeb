@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Abstracciones.Modelos
 {
-    public class Cliente
+    public class ClienteBase
     {
         [Required(ErrorMessage = "El campo Nombre es requerido")]
         public string Nombre { get; set; }
@@ -22,12 +22,12 @@ namespace Abstracciones.Modelos
 
     }
 
-    public class ClienteRequest : Cliente
+    public class ClienteRequest : ClienteBase
     {
         public Guid idUsuario { get; set; }
     }
 
-    public class ClienteResponse : Cliente
+    public class Cliente : ClienteBase
     {
         public Guid idUsuario { get; set; }
         public string Correo { get; set; } = string.Empty;
