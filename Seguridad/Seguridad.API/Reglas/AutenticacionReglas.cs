@@ -28,7 +28,7 @@ namespace BC
         public async Task<Token> LoginAync(LoginBase login)
         {
             Token respuestaToken= new Token() { AccessToken=string.Empty,ValidacionExitosa=false };
-            _usuario= await _usuarioDA.ObtenerUsuario(new Login { NombreUsuario = login.NombreUsuario, CorreoElectronico = login.CorreoElectronico });
+            _usuario= await _usuarioDA.ObtenerUsuario(new Login { CorreoElectronico = login.CorreoElectronico });
             if (_usuario == null)
                 return respuestaToken;
             var resultadoVerificacionCredenciales = await VerificarHashContraseniaAsync(login);

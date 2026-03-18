@@ -18,7 +18,7 @@ namespace Autorizacion.Flujo
             _seguridadDA = seguridadDA;
         }
 
-        public async Task<IEnumerable<RolResponse>> ObtenerRolxUsuario(Usuario usuario)
+        public async Task<IEnumerable<RolBase>> ObtenerRolxUsuario(Usuario usuario)
         {
             return await _seguridadDA.ObtenerRolxUsuario(usuario);
         }

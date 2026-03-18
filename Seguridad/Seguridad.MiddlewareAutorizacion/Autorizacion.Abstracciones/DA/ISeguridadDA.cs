@@ -9,7 +9,7 @@ namespace Autorizacion.Abstracciones.DA
 {
     public interface ISeguridadDA
     {
-        Task<IEnumerable<RolResponse>> ObtenerRolxUsuario(Usuario usuario);
+        Task<IEnumerable<RolBase>> ObtenerRolxUsuario(Usuario usuario);
         Task<Usuario> ObtenerUsuario(Cliente cliente);
     }
 }

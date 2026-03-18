@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autorizacion.Abstracciones.Proyecto" Version="1.0.3" />
+    <PackageReference Include="Autorizacion.Abstracciones.Proyecto" Version="1.0.5" />
     <PackageReference Include="Autorizacion.DA.Proyecto" Version="1.0.1" />
     <PackageReference Include="Autorizacion.Flujo.Proyecto" Version="1.0.1" />
     <PackageReference Include="Autorizacion.Middleware.Proyecto" Version="1.0.2" />
@@ -17,10 +17,6 @@
 	<ProjectReference Include="..\Abstracciones\Abstracciones.csproj" />
 	<ProjectReference Include="..\Reglas\Reglas.csproj" />
 	  
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Seguridad\" />
   </ItemGroup>
 
 </Project>

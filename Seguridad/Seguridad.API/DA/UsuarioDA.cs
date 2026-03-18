@@ -52,7 +52,6 @@ namespace DA
             string sql = @"ObtenerUsuario";
             var resultado = await _sqlConnection.QueryAsync<Usuario>(sql, 
             new { 
-                Nombre = login.NombreUsuario,
                 Correo = login.CorreoElectronico
             });
             return resultado.FirstOrDefault();

@@ -4,10 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<Version>1.0.0</Version>
+	<Version>1.0.5</Version>
 	<PackageId>Autorizacion.Abstracciones.Proyecto</PackageId>
 	<Authors>ProyectoPollosHermanos</Authors>
-	<RepositoryUrl>https://github.com/Funnyd/ProyectoPrograAvanzadaWeb</RepositoryUrl>
+	<RepositoryUrl>https://github.com/JorgeMadri05</RepositoryUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 

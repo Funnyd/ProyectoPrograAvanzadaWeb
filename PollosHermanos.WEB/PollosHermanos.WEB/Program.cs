@@ -1,4 +1,3 @@
-
 using Abstracciones.Interfaces.Reglas;
 using Autorizacion.Abstracciones.DA;
 using Autorizacion.Abstracciones.Flujo;
@@ -7,7 +6,6 @@ using Autorizacion.DA.Repositorios;
 using Autorizacion.Flujo;
 using Autorizacion.Middleware;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.Configuration;
 using Reglas;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,15 +19,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Seguridad/Login";
         options.LogoutPath = "/Seguridad/Logout";
-        options.AccessDeniedPath = "/Seguridad/Acceso";
+        options.AccessDeniedPath = "/Seguridad/AccesoDenegado";
         options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
     });
 
-// ? Servicios del paquete NuGet de autorización (para AutorizacionClaims)
 builder.Services.AddTransient<IAutorizacionFlujo, AutorizacionFlujo>();
 builder.Services.AddTransient<ISeguridadDA, SeguridadDA>();
 builder.Services.AddTransient<IRepositorioDapper, RepositorioDapper>();
-
 
 var app = builder.Build();
 
@@ -46,7 +42,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthentication();
 app.AutorizacionClaims();
 app.UseAuthorization();
 

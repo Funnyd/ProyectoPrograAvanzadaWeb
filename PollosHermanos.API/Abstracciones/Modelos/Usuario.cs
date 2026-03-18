@@ -18,7 +18,7 @@ namespace Abstracciones.Modelos
 
         [Required(ErrorMessage = "El campo Contraseña es requerido")]
         [PasswordPropertyText]
-        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d).{8,}$", ErrorMessage = "La contraseña debe tener al menos 8 caracteres, una mayuscula y un numero")]
+        //[RegularExpression(@"^(?=.*[A-Z])(?=.*\d).{8,}$", ErrorMessage = "La contraseña debe tener al menos 8 caracteres, una mayuscula y un numero")]
         public string Password { get; set; }
     }
 

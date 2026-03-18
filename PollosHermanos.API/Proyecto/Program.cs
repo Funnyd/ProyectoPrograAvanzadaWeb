@@ -3,26 +3,39 @@ using Abstracciones.Interfaces.DA;
 using Abstracciones.Interfaces.Flujo;
 using Abstracciones.Interfaces.Reglas;
 using Abstracciones.Modelos;
+using Autorizacion.Middleware;
 using DA;
 using DA.Repositorio;
 using Flujo;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Reglas;
+using System.Net;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => {
-        options.LoginPath = "/cuenta/Login";
-        options.LogoutPath = "/cuenta/Logout";
-        options.AccessDeniedPath = "/cuenta/Accesodenegado";
+var tokenConfig = builder.Configuration.GetSection("Token").Get<TokenConfiguracion>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = tokenConfig.Issuer,
+            ValidAudience = tokenConfig.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfig.key))
+        };
     });
 
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
@@ -55,9 +68,24 @@ builder.Services.AddScoped<IRestauranteDA, RestauranteDA>();
 builder.Services.AddScoped<IRepositorioDapper, RepositorioDapper>();
 builder.Services.AddScoped<IConfiguracion, Configuracion>();
 
+builder.Services.AddTransient<Autorizacion.Abstracciones.Flujo.IAutorizacionFlujo,
+                               Autorizacion.Flujo.AutorizacionFlujo>();
+builder.Services.AddTransient<Autorizacion.Abstracciones.DA.ISeguridadDA,
+                               Autorizacion.DA.SeguridadDA>();
+builder.Services.AddTransient<Autorizacion.Abstracciones.DA.IRepositorioDapper,
+                               Autorizacion.DA.Repositorios.RepositorioDapper>();
 
-
-
+var politicaAcceso = "Politica de acceso";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: politicaAcceso,
+                      policy =>
+                      {
+                          policy.WithOrigins("https://localhost", "https://localhost:7280", "https://localhost:7253")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                      });
+});
 
 var app = builder.Build();
 
@@ -69,9 +97,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseRouting();
+app.UseCors(politicaAcceso);
+app.AutorizacionClaims();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

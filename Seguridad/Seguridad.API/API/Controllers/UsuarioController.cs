@@ -20,7 +20,6 @@ namespace API.Controllers
             _usuarioFlujo = usuarioFlujo;
         }
 
-        [Authorize (Roles = "Cliente")]
         [HttpPost("ObtenerInformacionUsuario")]
         public async Task<IActionResult> ObtenerUsuario([FromBody] LoginBase login)
         {

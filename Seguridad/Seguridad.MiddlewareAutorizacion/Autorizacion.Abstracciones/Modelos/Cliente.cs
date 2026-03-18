@@ -22,11 +22,6 @@ namespace Abstracciones.Modelos
 
     }
 
-    public class ClienteRequest : ClienteBase
-    {
-        public Guid idUsuario { get; set; }
-    }
-
     public class Cliente : ClienteBase
     {
         public Guid idUsuario { get; set; }

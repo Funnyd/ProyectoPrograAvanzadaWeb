@@ -1,6 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[ObtenerUsuario]
 
-@Nombre NVARCHAR(MAX),
 @Correo NVARCHAR(MAX)
 
 AS
@@ -13,12 +12,13 @@ SELECT
         U.Correo,
         U.Password,
         U.idRol,
-        C.Nombre
+        C.Nombre,
+		E.Nombre 
 FROM Usuarios U
-INNER JOIN Clientes C 
+LEFT JOIN Clientes C 
     ON U.Id = C.idUsuario
-WHERE 
-    C.Nombre = @Nombre
-AND U.Correo = @Correo
+LEFT JOIN Empleados E 
+    ON U.Id = E.idUsuario
+WHERE U.Correo = @Correo
 
 END

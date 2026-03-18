@@ -9,17 +9,10 @@ using System.Threading.Tasks;
 
 namespace Abstracciones.Modelos
 {
-    public class Rol
+    public class RolBase
     {
         public Guid Id { get; set; }
-    }
-
-    
-
-    public class RolResponse : Rol
-    {
-        public Guid Id { get; set; }
-        public string Rol {  get; set; }
+        public string Rol { get; set; }
     }
 
 }

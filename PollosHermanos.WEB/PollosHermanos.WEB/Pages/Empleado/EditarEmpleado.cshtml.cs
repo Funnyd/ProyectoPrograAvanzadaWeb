@@ -1,5 +1,6 @@
 using Abstracciones.Interfaces.Reglas;
 using Abstracciones.Modelos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using System.Text.Json;
 
 namespace PollosHermanos.WEB.Pages.Empleado
 {
+    [Authorize(Roles = "Administrador")]
     public class EditarEmpleadoModel : PageModel
     {
         private readonly IConfiguracion _configuracion;
@@ -30,7 +32,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
             if (id == Guid.Empty)
                 return NotFound();
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerEmpleadoPorId");
-            var cliente = new HttpClient();
+            var cliente = ObtenerClienteConToken();
             var solicitud = new HttpRequestMessage(HttpMethod.Get, string.Format(endpoint, id));
             var respuesta = await cliente.SendAsync(solicitud);
             respuesta.EnsureSuccessStatusCode();
@@ -57,7 +59,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
             if (id == Guid.Empty)
                 return NotFound();
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerUsuarioPorId");
-            var cliente = new HttpClient();
+            var cliente = ObtenerClienteConToken();
             var solicitud = new HttpRequestMessage(HttpMethod.Get, string.Format(endpoint, id));
             var respuesta = await cliente.SendAsync(solicitud);
             respuesta.EnsureSuccessStatusCode();
@@ -80,7 +82,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
             if (!ModelState.IsValid)
                 return Page();
             string endpoint = _configuracion.ObtenerMetodo("APIEndPoints", "EditarEmpleado");
-            var cliente = new HttpClient();
+            var cliente = ObtenerClienteConToken();
             var respuesta = await cliente.PutAsJsonAsync<EmpleadoRequest>(string.Format(endpoint, empleado.idUsuario), new EmpleadoRequest
             {
                 Nombre = empleado.Nombre,
@@ -95,7 +97,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
             if (!ModelState.IsValid)
                 return Page();
             string endpoint = _configuracion.ObtenerMetodo("APIEndPoints", "EditarUsuario");
-            var cliente = new HttpClient();
+            var cliente = ObtenerClienteConToken();
             var respuesta = await cliente.PutAsJsonAsync<UsuarioRequest>(string.Format(endpoint, idUsuario), new UsuarioRequest
             {
                 Correo = usuario.Correo,
@@ -103,14 +105,14 @@ namespace PollosHermanos.WEB.Pages.Empleado
                 idRol = usuario.idRol
             });
             respuesta.EnsureSuccessStatusCode();
-            return RedirectToPage("./MenuEmpleado");
+            return RedirectToPage("./");
         }
 
 
         public async Task ObtenerRestaurantes()
         {
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerRestaurantes");
-            var cliente = new HttpClient();
+            var cliente = ObtenerClienteConToken();
             var solicitud = new HttpRequestMessage(HttpMethod.Get, string.Format(endpoint));
             var respuesta = await cliente.SendAsync(solicitud);
             var resultado = await respuesta.Content.ReadAsStringAsync();
@@ -125,6 +127,18 @@ namespace PollosHermanos.WEB.Pages.Empleado
                 Text = m.Ubicacion,
             }
             ).ToList();
+        }
+
+        private HttpClient ObtenerClienteConToken()
+        {
+            var tokenClaim = HttpContext.User.Claims
+                .FirstOrDefault(c => c.Type == "Token");
+            var cliente = new HttpClient();
+            if (tokenClaim != null)
+                cliente.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue(
+                        "Bearer", tokenClaim.Value);
+            return cliente;
         }
     }
 }

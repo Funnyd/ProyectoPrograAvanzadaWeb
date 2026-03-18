@@ -3,6 +3,7 @@ using Abstracciones.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Reglas;
 using System.Net;
 using System.Reflection;
 using System.Text.Json;
@@ -44,8 +45,10 @@ namespace PollosHermanos.WEB.Pages.Empleado
             Guid idRolEncontrado = await ObtenerIdRol("Empleado");
             usuario.idRol = idRolEncontrado;
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "CrearUsuario");
-            var cliente = new HttpClient();
+            var cliente = ObtenerClienteConToken();
             var solicitud = new HttpRequestMessage(HttpMethod.Post, endpoint);
+            var hash = Autenticacion.GenerarHash(usuario.Password);
+            usuario.Password = Autenticacion.ObtenerHash(hash);
             var respuesta = await cliente.PostAsJsonAsync(endpoint, usuario);
             respuesta.EnsureSuccessStatusCode();
             var contenido = respuesta.Headers.Location.Segments.Last();
@@ -59,7 +62,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
             empleado.idUsuario = IdUsuario;
             empleado.idRestaurante = idRestaurante;
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "CrearEmpleado");
-            var cliente = new HttpClient();
+            var cliente = ObtenerClienteConToken();
             var solicitud = new HttpRequestMessage(HttpMethod.Post, endpoint);
             var respuesta = await cliente.PostAsJsonAsync(endpoint, empleado);
             respuesta.EnsureSuccessStatusCode();
@@ -70,7 +73,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
         public async Task ObtenerRestaurantes()
         {
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerRestaurantes");
-            var cliente = new HttpClient();
+            var cliente = ObtenerClienteConToken();
             var solicitud = new HttpRequestMessage(HttpMethod.Get, string.Format(endpoint));
             var respuesta = await cliente.SendAsync(solicitud);
             var resultado = await respuesta.Content.ReadAsStringAsync();
@@ -90,7 +93,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
         private async Task<Guid> ObtenerIdRol(string rol)
         {
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerRol");
-            var cliente = new HttpClient();
+            var cliente = ObtenerClienteConToken();
             var solicitud = new HttpRequestMessage(HttpMethod.Get, string.Format(endpoint, rol));
             var respuesta = await cliente.SendAsync(solicitud);
             respuesta.EnsureSuccessStatusCode();
@@ -98,6 +101,19 @@ namespace PollosHermanos.WEB.Pages.Empleado
                  new JsonSerializerOptions
             { PropertyNameCaseInsensitive = true });
             return resultado.Id;
+        }
+
+
+        private HttpClient ObtenerClienteConToken()
+        {
+            var tokenClaim = HttpContext.User.Claims
+                .FirstOrDefault(c => c.Type == "Token");
+            var cliente = new HttpClient();
+            if (tokenClaim != null)
+                cliente.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue(
+                        "Bearer", tokenClaim.Value);
+            return cliente;
         }
     }
 

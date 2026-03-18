@@ -1,5 +1,4 @@
-﻿// Reglas/Autenticacion.cs
-using Abstracciones.Modelos;
+﻿using Abstracciones.Modelos;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -27,12 +26,14 @@ namespace Reglas
             }
             return builder.ToString();
         }
+
         public static JwtSecurityToken? leerToken(string token)
         {
             var handler = new JwtSecurityTokenHandler();
             var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
             return jsonToken;
         }
+
         public static List<Claim> GenerarClaims(JwtSecurityToken? jwtToken, string accessToken)
         {
             var claims = new List<Claim>();
