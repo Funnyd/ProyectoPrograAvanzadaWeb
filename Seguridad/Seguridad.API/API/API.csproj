@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autorizacion.Abstracciones.Proyecto" Version="1.0.4" />
+    <PackageReference Include="Autorizacion.Abstracciones.Proyecto" Version="1.0.5" />
     <PackageReference Include="Autorizacion.DA.Proyecto" Version="1.0.1" />
     <PackageReference Include="Autorizacion.Flujo.Proyecto" Version="1.0.1" />
     <PackageReference Include="Autorizacion.Middleware.Proyecto" Version="1.0.2" />

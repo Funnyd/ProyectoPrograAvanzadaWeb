@@ -29,6 +29,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
         public Guid idDelRestaurante { get; set; }
         public async Task<ActionResult> OnGet(Guid? id)
         {
+            await ObtenerRestaurantes();
             if (id == Guid.Empty)
                 return NotFound();
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerEmpleadoPorId");
@@ -38,7 +39,6 @@ namespace PollosHermanos.WEB.Pages.Empleado
             respuesta.EnsureSuccessStatusCode();
             if (respuesta.StatusCode == HttpStatusCode.OK)
             {
-                await ObtenerRestaurantes();
                 var resultado = await respuesta.Content.ReadAsStringAsync();
                 var opciones = new JsonSerializerOptions
                 { PropertyNameCaseInsensitive = true };
@@ -78,7 +78,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
 
         public async Task<ActionResult> OnPostAsync()
         {
-
+            await ObtenerRestaurantes();
             if (!ModelState.IsValid)
                 return Page();
             string endpoint = _configuracion.ObtenerMetodo("APIEndPoints", "EditarEmpleado");
@@ -105,7 +105,7 @@ namespace PollosHermanos.WEB.Pages.Empleado
                 idRol = usuario.idRol
             });
             respuesta.EnsureSuccessStatusCode();
-            return RedirectToPage("./");
+            return RedirectToPage("./MenuEmpleado");
         }
 
 

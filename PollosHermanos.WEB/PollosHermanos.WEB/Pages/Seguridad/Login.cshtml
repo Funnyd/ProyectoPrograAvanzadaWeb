@@ -24,19 +24,14 @@
                     <form method="post">
                         <div class="mb-3">
                             <label class="form-label">Correo electrónico</label>
-                            <input type="email" 
-                                   class="form-control" 
-                                   asp-for="loginInfo.CorreoElectronico" 
-                                   placeholder="correo@ejemplo.com">
+                            <input type="email" class="form-control" asp-for="loginInfo.CorreoElectronico" 
+                                   placeholder="Ejem: ycorreo@ejemplo.com">
                             <span asp-validation-for="loginInfo.CorreoElectronico" class="text-danger small"></span>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Contraseña</label>
-                            <input type="password" 
-                                   class="form-control" 
-                                   asp-for="loginInfo.Password" 
-                                   placeholder="••••••••">
+                            <input type="password" class="form-control"asp-for="loginInfo.Password" />
                             <span asp-validation-for="loginInfo.Password" class="text-danger small"></span>
                         </div>
 
@@ -53,8 +48,7 @@
                     <hr class="my-4">
 
                     <div class="text-center small">
-                        <a href="./registro" class="text-decoration-none me-3">Registrarse</a>
-                        <a href="#!" class="text-decoration-none">Olvidé mi contraseña</a>
+                        <a asp-page="./Registrar" class="text-decoration-none me-3">Registrarse</a>
                     </div>
 
                 </div>

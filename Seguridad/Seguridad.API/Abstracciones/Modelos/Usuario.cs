@@ -20,7 +20,7 @@ namespace Abstracciones.Modelos
         public string Password { get; set; }
     }
 
-    public class UsuarioRequest : Usuario
+    public class UsuarioRequest : UsuarioBase
     {
         public Guid idRol { get; set; }
 

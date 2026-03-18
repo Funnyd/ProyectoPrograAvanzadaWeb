@@ -8,7 +8,7 @@ namespace Abstracciones.Modelos
 {
     public class ClienteCompleto
     {
-        public Usuario Usuario { get; set; }
-        public Clientes Cliente { get; set; }
+        public UsuarioRequest Usuario { get; set; }
+        public ClienteBase Cliente { get; set; }
     }
 }
