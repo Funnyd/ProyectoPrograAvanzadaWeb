@@ -7,10 +7,10 @@
 	<Version>1.0.2</Version> 
 	<PackageId>Autorizacion.Middleware.Proyecto</PackageId>
 	<Authors>ProyectoPollosHermanos</Authors>
-	<RepositoryUrl>https://github.com/JorgeMadri05</RepositoryUrl>
+	<RepositoryUrl>https://github.com/Funnyd</RepositoryUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
-
+ 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
