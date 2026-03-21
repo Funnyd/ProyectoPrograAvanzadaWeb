@@ -7,7 +7,7 @@
 	<Version>1.0.2</Version> 
 	<PackageId>Autorizacion.Middleware.Proyecto</PackageId>
 	<Authors>ProyectoPollosHermanos</Authors>
-	<RepositoryUrl>https://github.com/Funnyd</RepositoryUrl>
+	<RepositoryUrl>https://github.com/SC-701</RepositoryUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
  
